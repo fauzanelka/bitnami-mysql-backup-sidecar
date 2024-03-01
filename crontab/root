@@ -1,0 +1,2 @@
+0 1 * * * /root/scripts/run-backup-daily.sh > /proc/1/fd/1 2>&1
+0 0 1 * * /root/scripts/run-backup-monthly.sh > /proc/1/fd/1 2>&1
