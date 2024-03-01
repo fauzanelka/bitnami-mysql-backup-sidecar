@@ -1,5 +1,7 @@
 FROM debian:11-slim
 
+LABEL org.opencontainers.image.source https://github.com/fauzanelka/bitnami-mysql-backup-sidecar
+
 COPY --from=bitnami/mysql:8.0-debian-11 /opt/bitnami/mysql/bin/mysql /opt/bitnami/mysql/bin/mysql
 COPY --from=bitnami/mysql:8.0-debian-11 /opt/bitnami/mysql/bin/mysqladmin /opt/bitnami/mysql/bin/mysqladmin
 COPY --from=bitnami/mysql:8.0-debian-11 /opt/bitnami/mysql/bin/mysqlcheck /opt/bitnami/mysql/bin/mysqlcheck
