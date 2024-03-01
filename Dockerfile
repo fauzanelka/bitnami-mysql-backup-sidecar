@@ -12,11 +12,14 @@ COPY --from=bitnami/mysql:8.0-debian-11 /opt/bitnami/mysql/bin/mysqlslap /opt/bi
 
 ENV PATH="$PATH:/opt/bitnami/mysql/bin"
 
+ADD https://github.com/rclone/rclone/releases/download/v1.65.2/rclone-v1.65.2-linux-amd64.deb /tmp/rclone-v1.65.2-linux-amd64.deb
+
 RUN apt-get update && apt-get install -y \
     cron \
-    rclone \
     vim \
-    && rm -rf /var/lib/apt/lists/*
+    && dpkg -i /tmp/rclone-v1.65.2-linux-amd64.deb \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /tmp/*
 
 COPY --chmod=755 --chown=root:root scripts/ /root/scripts/
 COPY --chmod=600 --chown=root:crontab crontab/ /var/spool/cron/crontabs/
