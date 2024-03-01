@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # Backup daily with 365 days rotation
 
+# shellcheck source=/dev/null
+. <(xargs -0 bash -c 'printf "export %q\n" "$@"' -- < /proc/1/environ)
+
 RESULT_FILE="$MONTHLY_BACKUP_DIR/$MYSQL_DATABASE-$(date +%Y%m%d%H%M%S).sql"
 
 if mysqldump --single-transaction --set-gtid-purged=OFF --skip-add-drop-table --no-tablespaces --host="$MYSQL_HOST" --user="$MYSQL_USER" --password="$MYSQL_PASSWORD" --result-file="$RESULT_FILE" "${MYSQL_DATABASE}" && gzip "$RESULT_FILE"; then
