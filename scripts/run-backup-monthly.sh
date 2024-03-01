@@ -3,7 +3,7 @@
 
 RESULT_FILE="$MONTHLY_BACKUP_DIR/$MYSQL_DATABASE-$(date +%Y%m%d%H%M%S).sql"
 
-if mysqldump --single-transaction --set-gtid-purged=OFF --skip-add-drop-table --no-tablespaces --user="$MYSQL_USER" --password="$MYSQL_PASSWORD" --result-file="$RESULT_FILE" "${MYSQL_DATABASE}" && gzip "$RESULT_FILE" > "$RESULT_FILE.gz"; then
+if mysqldump --single-transaction --set-gtid-purged=OFF --skip-add-drop-table --no-tablespaces --host="$MYSQL_HOST" --user="$MYSQL_USER" --password="$MYSQL_PASSWORD" --result-file="$RESULT_FILE" "${MYSQL_DATABASE}" && gzip "$RESULT_FILE" > "$RESULT_FILE.gz"; then
     echo "$MYSQL_DATABASE dump was successful."
 else
     echo "$MYSQL_DATABASE dump failed."
