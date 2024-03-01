@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bitnami-mysql-backup-sidecar
+  name: bitnami-mysql-backup-sidecar
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: bitnami-mysql-backup-sidecar
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: bitnami-mysql-backup-sidecar
+    spec:
+      containers:
+        - image: ghcr.io/fauzanelka/bitnami-mysql-backup-sidecar:1
+          imagePullPolicy: Always
+          name: bitnami-mysql-backup-sidecar
+          envFrom:
+            - secretRef:
+                name: bitnami-mysql-backup-sidecar-env
+          resources: {}
+          volumeMounts:
+            - mountPath: /mnt/backup-daily
+              name: backup-daily
+            - mountPath: /mnt/backup-monthly
+              name: backup-monthly
+      volumes:
+        - name: backup-daily
+          persistentVolumeClaim:
+            claimName: backup-daily
+        - name: backup-monthly
+          persistentVolumeClaim:
+            claimName: backup-monthly

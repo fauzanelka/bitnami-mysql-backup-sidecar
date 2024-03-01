@@ -4,6 +4,17 @@ Bitnami MySQL Backup sidecar with backup plans
 - [x] Daily backup with 7 days retention
 - [x] Monthly backup with 365 days retention
 
+## Showcase
+
+- [ ] Adjust [crontab/root](crontab/root) according to your needs (i.e. every 10 minutes)
+- [ ] Adjust [kustomize/demo/secret/bitnami-mysql-backup-sidecar.yaml](kustomize/demo/secret/bitnami-mysql-backup-sidecar.yaml) according to your needs.
+- [ ] Build the image from source, push to your registry provider.
+- [ ] Apply 
+  
+  ```yaml
+  kubectl apply -k kustomize/demo
+  ```
+
 ## Build image from source
 
 With Docker
@@ -34,7 +45,7 @@ stringData:
   RCLONE_S3_ACCESS_KEY_ID: 
   RCLONE_S3_SECRET_ACCESS_KEY: 
   RCLONE_S3_REGION: us-east-1
-  RCLONE_S3_ENDPOINT: s3.
+  RCLONE_S3_ENDPOINT: s3.us-east-1.amazonaws.com
   RCLONE_S3_BUCKET: test-bucket
 ```
 

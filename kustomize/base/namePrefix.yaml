@@ -1,0 +1,8 @@
+namePrefix:
+  - path: metadata/labels/app
+  - path: spec/selector/app
+    kind: Service
+  - path: spec/selector/matchLabels/app
+    kind: Deployment
+  - path: spec/template/metadata/labels/app
+    kind: Deployment
