@@ -46,7 +46,8 @@ stringData:
   RCLONE_S3_SECRET_ACCESS_KEY: 
   RCLONE_S3_REGION: us-east-1
   RCLONE_S3_ENDPOINT: s3.us-east-1.amazonaws.com
-  RCLONE_S3_BUCKET: test-bucket
+  RCLONE_S3_BUCKET_DAILY: test-bucket
+  RCLONE_S3_BUCKET_MONTHLY: test-bucket
 ```
 
 Apply

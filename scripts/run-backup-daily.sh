@@ -15,7 +15,7 @@ fi
 
 find "$DAILY_BACKUP_DIR" -type f -name '*.sql' -mtime +7 -exec rm {} \;
 
-if rclone copy "$RESULT_FILE.gz" ":s3:$RCLONE_S3_BUCKET/"; then
+if rclone copy "$RESULT_FILE.gz" ":s3:$RCLONE_S3_BUCKET_DAILY/"; then
     echo "$RESULT_FILE.gz successfully copied to remote location."
 else
     echo "Failed to copy $RESULT_FILE.gz to remote location."
